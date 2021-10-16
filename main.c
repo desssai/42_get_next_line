@@ -27,7 +27,5 @@ int	main(int argc, char **argv)
 		line = get_next_line(fd);
 		printf("%s", line);
 	}
-	close(fd);
-	free(line);
 	return (0);
 }

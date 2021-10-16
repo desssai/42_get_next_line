@@ -1,14 +1,30 @@
-#ifndef __GET_NEXT_LINE_H__
-# define __GET_NEXT_LINE_H__
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ncarob <ncarob@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/16 19:02:34 by ncarob            #+#    #+#             */
+/*   Updated: 2021/10/16 19:02:41 by ncarob           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
 # include <unistd.h>
 # include <stdlib.h>
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 4096
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 4096
 
-#endif /* BUFFER_SIZE */
+# endif /* BUFFER_SIZE */
 
 char	*get_next_line(int fd);
+size_t	ft_strlen(const char *s);
+char	*ft_strdup(const char *s);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strjoin(char const *s1, char const *s2);
 
-#endif /* __GET_NEXT_LINE_H__ */
+#endif /* GET_NEXT_LINE_H */
