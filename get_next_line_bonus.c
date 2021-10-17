@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarob <ncarob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 16:45:22 by ncarob            #+#    #+#             */
-/*   Updated: 2021/10/17 20:34:46 by ncarob           ###   ########.fr       */
+/*   Updated: 2021/10/17 20:32:54 by ncarob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,16 @@ static void	check_buffer(char *buf, char **result, char **newline_pointer)
 	}
 }
 
+static void	move_buffer(int fd, int *ret, char *buf, char **result)
+{
+	*ret = read(fd, buf, BUFFER_SIZE);
+	buf[*ret] = 0;
+	*result = add_buffer(*result, buf);
+}
+
 char	*get_next_line(int fd)
 {
-	static char	buf[BUFFER_SIZE + 1];
+	static char	buf[OPEN_MAX][BUFFER_SIZE + 1];
 	char		*result;
 	char		*newline_pointer;
 	int			ret;
@@ -35,12 +42,12 @@ char	*get_next_line(int fd)
 	ret = 1;
 	newline_pointer = NULL;
 	result = NULL;
-	check_buffer(buf, &result, &newline_pointer);
+	if (fd < 0 || fd > OPEN_MAX)
+		return (NULL);
+	check_buffer(buf[fd], &result, &newline_pointer);
 	while (ret && !newline_pointer)
 	{
-		ret = read(fd, buf, BUFFER_SIZE);
-		buf[ret] = 0;
-		result = add_buffer(result, buf);
+		move_buffer(fd, &ret, buf[fd], &result);
 		if (ret == -1 || (!ret && !result) || (result && !result[0]))
 		{
 			free(result);
