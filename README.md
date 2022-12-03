@@ -3,7 +3,7 @@
 ## Overview 
 
 Yet another beginner project at ecole 42 course.\
-The aim of the project is to get accustomed to how file descrpters work, learn what static variables are, train in C lamguage.\
+The aim of the project is to get accustomed to how file descrpters work, learn what static variables are, train in C lamguage.
 The `get_next_line` function consecutively reads a line from a file descriptor and returns it until it comes across EOF.
 
 ## Usage
