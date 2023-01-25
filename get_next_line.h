@@ -6,7 +6,7 @@
 /*   By: ncarob <ncarob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 19:02:34 by ncarob            #+#    #+#             */
-/*   Updated: 2021/10/18 22:57:30 by ncarob           ###   ########.fr       */
+/*   Updated: 2023/01/25 23:21:35 by ncarob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 4096
+
+# endif /* BUFFER_SIZE */
+
+# if BUFFER_SIZE < -1
+#  undef BUFFER_SIZE
+#  define BUFFER_SIZE -1
 
 # endif /* BUFFER_SIZE */
 
